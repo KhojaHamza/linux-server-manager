@@ -1,15 +1,18 @@
 
 #!/bin/bash
-
+while true
+do
+clear
 echo "        LINUX SERVER MANAGER"
 echo
 
 echo "1. System Information"
 echo "2. System Resources"
 echo "3. Service Monitoring"
-echo "4. User Information"
-echo "5. Log Analysis"
-echo "6. backup"
+echo "4. Process Monitoring"
+echo "5. User Information"
+echo "6. Log Analysis"
+echo "7. backup"
 echo "0. Exit"
 echo
 
@@ -44,9 +47,11 @@ case $choice in
         ;;
      3)
        echo
-       ./monitor.sh
+       ./modules/monitor.sh
         ;;
-     4)
+     4)./modules/processes.sh
+        ;;
+     5)
        echo
        echo "        USER INFORMATION"
        echo
@@ -60,19 +65,20 @@ case $choice in
        echo "Group ID: $gid"
        echo "Home directory: $home"
         ;;
-     5)
+     6)
        echo
-       ./logs.sh
+       ./modules/logs.sh
        ;;
-    6)
+    7)
        echo
        echo "              BACKUP"
        echo
-       ./backup.sh
+       ./modules/backup.sh
        ;;
     0)
         echo
         echo "Goodbye!"
+        exit 0
         ;;
 
     *)
@@ -83,3 +89,5 @@ case $choice in
 esac
 
 
+read -p "Press enter to return to the menu..."
+done
