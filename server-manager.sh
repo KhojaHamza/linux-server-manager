@@ -33,17 +33,7 @@ case $choice in
         ;;
 
     2)
-        echo
-        echo "        SYSTEM RESOURCES"
-        echo
-
-        cpu=$(top -bn1 | awk -F',' '/Cpu\(s\)/ {printf "%.1f%%", 100 - $4}')
-        ram=$(free | awk '/Mem:/ {printf "%.0f%%", $3/$2 * 100}')
-        disk=$(df -h / | awk 'NR==2 {print $5}')
-
-        echo "CPU Usage: $cpu"
-        echo "RAM Usage: $ram"
-        echo "Disk Usage: $disk"
+        ./modules/system.sh
         ;;
      3)
        echo
@@ -52,18 +42,7 @@ case $choice in
      4)./modules/processes.sh
         ;;
      5)
-       echo
-       echo "        USER INFORMATION"
-       echo
-       username=$(whoami)
-       uid=$(id -u)
-       gid=$(id -g)
-       home=$HOME
-
-       echo "Current User: $username"
-       echo "User ID: $uid"
-       echo "Group ID: $gid"
-       echo "Home directory: $home"
+       ./modules/users.sh
         ;;
      6)
        echo
